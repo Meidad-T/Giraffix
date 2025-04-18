@@ -6,6 +6,7 @@
     <title>Resume Templates - Giraffe</title>
     <link rel="stylesheet" href="templates.css">
 </head>
+<script src="templates.js"></script>
 <body>
     <!-- Reuse Navbar -->
     <nav class="navbar">
@@ -29,12 +30,22 @@
                 <h3>Simple & Clean</h3>
                 <a href="templates/template1/index.html" class="cta-button">Use This Template</a>
             </div>
+
             <!-- Repeat card blocks for other templates -->
             <div class="template-card">
-                <img src="templates/template2/preview.png" alt="Template 2 Preview">
-                <h3>Creative Design</h3>
+                <div class="carousel-wrapper">
+                  <div class="carousel-preview" data-folder="templates/template2" data-total="4">
+                    <img class="carousel-img active" src="templates/template2/preview_1.png" alt="Template Preview 1">
+                    <img class="carousel-img" src="templates/template2/preview_2.png" alt="Template Preview 2">
+                  </div>
+                </div>
+                <h3>Colorful Dream</h3>
+                <!-- <p class="template-subtitle">Fully Customizable!</p> -->
                 <a href="templates/template2/index.html" class="cta-button">Use This Template</a>
-            </div>
+              </div>
+
+
+              
             <div class="template-card">
                 <img src="templates/template3/preview.png" alt="Template 3 Preview">
                 <h3>Simple and Clean</h3>

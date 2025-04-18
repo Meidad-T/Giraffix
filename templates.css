@@ -85,3 +85,45 @@ body {
 .cta-button:hover {
     background-color: #f5a106; /* Darker shade on hover */
 }
+
+
+.carousel-wrapper {
+    width: 100%;
+    height: 325px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  
+.carousel-preview {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  
+  .carousel-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 0;
+  }
+  
+  .carousel-img.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .template-subtitle {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin: -0.75rem 0 1rem;
+}

@@ -118,3 +118,31 @@ document.addEventListener('DOMContentLoaded', function() {
     // Trigger scroll event once to check initial positions
     window.dispatchEvent(new Event('scroll'));
 });
+
+
+// ✅ Smooth Carousel with Fade
+document.querySelectorAll('.carousel-preview').forEach(preview => {
+    const folder = preview.dataset.folder;
+    const total = parseInt(preview.dataset.total, 10);
+    let current = 1;
+  
+    const [img1, img2] = preview.querySelectorAll('.carousel-img');
+    let showingFirst = true;
+  
+    setInterval(() => {
+      current = (current % total) + 1;
+      const nextImg = `${folder}/preview_${current}.png`;
+  
+      if (showingFirst) {
+        img2.src = nextImg;
+        img2.classList.add('active');
+        img1.classList.remove('active');
+      } else {
+        img1.src = nextImg;
+        img1.classList.add('active');
+        img2.classList.remove('active');
+      }
+  
+      showingFirst = !showingFirst;
+    }, 3000);
+  });
