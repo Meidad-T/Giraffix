@@ -6,6 +6,9 @@
   <title>Template 1 - Resume Editor</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 <body>
 
     <nav class="navbar">
@@ -136,6 +139,13 @@
           <button type="button" id="prev-btn">Previous Section</button>
           <button type="button" id="next-btn">Next Section</button>
         </div>
+
+        <!-- FINAL: Download Resume -->
+      <div class="form-section">
+        <h2>All Done!</h2>
+        <p style="margin-bottom: 1rem;">You can now download your resume.</p>
+        <button type="button" id="download-btn" class="cta-button">Download PDF</button>
+      </div>
       
       </form>
       
