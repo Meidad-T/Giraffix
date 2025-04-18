@@ -183,3 +183,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateSectionView();
 });
+
+// ✅ Download PDF Logic
+const downloadBtn = document.getElementById('download-btn');
+if (downloadBtn) {
+  downloadBtn.addEventListener('click', () => {
+    const element = document.querySelector('.resume');
+
+    const opt = {
+      margin: [40, 40, 40, 40],
+      filename: 'resume.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+        logging: false,
+        useCORS: true,
+        scrollY: 0
+      },
+      jsPDF: {
+        unit: 'pt',
+        format: 'a4',
+        orientation: 'portrait'
+      },
+      pagebreak: {
+        mode: ['avoid-all', 'css', 'legacy']
+      }
+    };
+
+    html2pdf().set(opt).from(element).save();
+  });
+}
