@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fefefe;
+  }
+  
+  .builder-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .resume-preview {
+    flex: 1;
+    background: #f4f4f4;
+    padding: 2rem;
+    border-right: 2px solid #eee;
+    overflow-y: auto;
+  }
+  
+  .resume {
+    background: #fff;
+    padding: 2rem;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    max-width: 700px;
+  }
+  
+  .resume h1 {
+    font-size: 2.5rem;
+    color: #333;
+  }
+  
+  .resume p {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 0.5rem 0;
+  }
+  
+  .resume-section {
+    margin-top: 2rem;
+  }
+  
+  .resume-section h2 {
+    font-size: 1.3rem;
+    color: #222;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .resume-section ul {
+    padding-left: 1rem;
+  }
+  
+  .form-section {
+    flex: 1;
+    padding: 3rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+  }
+  
+  form {
+    width: 100%;
+    max-width: 400px;
+    transition: transform 0.5s ease;
+  }
+  
+  .form-step {
+    display: none;
+    flex-direction: column;
+  }
+  
+  .form-step.active {
+    display: flex;
+    animation: fade-in 0.4s ease-in-out;
+  }
+  
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  .form-step h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+  }
+  
+  .form-step input {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .next-step {
+    background-color: #FF7301;
+    color: white;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .next-step:hover {
+    background-color: #e56200;
+  }
+  
