@@ -8,9 +8,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
 <body>
-
   <nav class="navbar">
     <div class="logo-container">
       <img src="../../assets/girrafe_logo.png" alt="Giraffe Resume Logo" class="logo" />
@@ -70,9 +68,15 @@
           <!-- SECTION 1: Resume Color FIRST -->
           <div class="form-section">
             <h2>Choose Resume Color</h2>
-            <div class="form-group">
-              <label for="resume-color">Select Color:</label>
-              <input type="color" id="resume-color" value="#ffeb3b" />
+            <div class="form-grid-tight">
+              <div class="form-group">
+                <label for="resume-color">Background Gradient:</label>
+                <input type="color" id="resume-color" value="#ffeb3b" />
+              </div>
+              <div class="form-group">
+                <label for="text-color">Text Color:</label>
+                <input type="color" id="text-color" value="#00796b" />
+              </div>
             </div>
           </div>
 
@@ -139,14 +143,20 @@
             <div class="form-group"><label for="proj-desc">Description</label><textarea id="proj-desc" placeholder="Built a personal portfolio with HTML/CSS/JS" rows="4"></textarea></div>
           </div>
 
+          <!-- SECTION 7.5: Final Color Customization -->
           <div class="form-section">
             <h2>Last Minute Color Change? <small>(Optional)</small></h2>
-            <div class="form-group">
-              <label for="resume-color-final">Pick a Color:</label>
-              <input type="color" id="resume-color-final" value="#ffeb3b" />
+            <div class="form-grid-tight">
+              <div class="form-group">
+                <label for="resume-color-final">Background Gradient:</label>
+                <input type="color" id="resume-color-final" value="#ffeb3b" />
+              </div>
+              <div class="form-group">
+                <label for="text-color-final">Text Color:</label>
+                <input type="color" id="text-color-final" value="#00796b" />
+              </div>
             </div>
           </div>
-
 
           <!-- SECTION 8: Completion -->
           <div class="form-section">
@@ -154,8 +164,6 @@
             <p style="margin-bottom: 2rem;">That was easy, wasn't it?</p>
             <button type="button" class="cta-button" id="download-btn">Download PDF</button>
           </div>
-
-
 
         </div>
 

@@ -146,6 +146,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const resume = document.getElementById('resume');
   const colorInput = document.getElementById('resume-color');
+  const textColorInput = document.getElementById('text-color');
+
+  const applyTextColor = (color) => {
+    document.querySelectorAll('#resume h1, #resume p, #resume li, #resume .section-title').forEach(el => {
+      el.style.color = color;
+    });
+  };
 
   const updateGradient = () => {
     const color = colorInput.value;
@@ -153,20 +160,34 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   colorInput.addEventListener('input', updateGradient);
+  textColorInput?.addEventListener('input', () => applyTextColor(textColorInput.value));
+
   updateGradient();
+  applyTextColor(textColorInput?.value || '#00796b');
 
   const finalColorInput = document.getElementById('resume-color-final');
-if (finalColorInput) {
-  finalColorInput.addEventListener('input', () => {
-    const color = finalColorInput.value;
-    resume.style.background = `linear-gradient(180deg, ${color}, #ffffff)`;
-    colorInput.value = color; // sync original picker
-  });
+  const finalTextColorInput = document.getElementById('text-color-final');
 
-  colorInput.addEventListener('input', () => {
-    finalColorInput.value = colorInput.value; // keep synced
-  });
-}
+  if (finalColorInput) {
+    finalColorInput.addEventListener('input', () => {
+      const color = finalColorInput.value;
+      resume.style.background = `linear-gradient(180deg, ${color}, #ffffff)`;
+      colorInput.value = color;
+    });
+    colorInput.addEventListener('input', () => {
+      finalColorInput.value = colorInput.value;
+    });
+  }
+
+  if (finalTextColorInput) {
+    finalTextColorInput.addEventListener('input', () => {
+      applyTextColor(finalTextColorInput.value);
+      textColorInput.value = finalTextColorInput.value;
+    });
+    textColorInput.addEventListener('input', () => {
+      finalTextColorInput.value = textColorInput.value;
+    });
+  }
 
   updateContact();
   renderEducation();
@@ -199,33 +220,32 @@ if (finalColorInput) {
 
   updateSectionView();
 
-// ✅ Download PDF logic
-const downloadBtn = document.getElementById('download-btn');
-if (downloadBtn) {
-  downloadBtn.addEventListener('click', () => {
-    const element = document.getElementById('resume');
+  const downloadBtn = document.getElementById('download-btn');
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', () => {
+      const element = document.getElementById('resume');
 
-    const opt = {
-      margin:       [40, 40, 40, 40], // top, left, bottom, right in points (~0.56in)
-      filename:     'resume.pdf',
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  {
-        scale: 2,
-        logging: false,
-        useCORS: true,
-        scrollY: 0
-      },
-      jsPDF: {
-        unit: 'pt',
-        format: 'a4',
-        orientation: 'portrait'
-      },
-      pagebreak: {
-        mode: ['avoid-all', 'css', 'legacy']
-      }
-    };
+      const opt = {
+        margin:       [40, 40, 40, 40],
+        filename:     'resume.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  {
+          scale: 2,
+          logging: false,
+          useCORS: true,
+          scrollY: 0
+        },
+        jsPDF: {
+          unit: 'pt',
+          format: 'a4',
+          orientation: 'portrait'
+        },
+        pagebreak: {
+          mode: ['avoid-all', 'css', 'legacy']
+        }
+      };
 
-    html2pdf().set(opt).from(element).save();
-  }); // ✅ this closes the .addEventListener
-} 
-})
+      html2pdf().set(opt).from(element).save();
+    });
+  }
+});
