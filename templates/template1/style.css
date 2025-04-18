@@ -1,112 +1,133 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #fefefe;
-  }
-  
-  .builder-container {
+    background-color: #eee;
     display: flex;
     height: 100vh;
     overflow: hidden;
   }
   
-  .resume-preview {
-    flex: 1;
-    background: #f4f4f4;
-    padding: 2rem;
-    border-right: 2px solid #eee;
-    overflow-y: auto;
+  .container {
+    display: flex;
+    width: 100%;
   }
   
-  .resume {
-    background: #fff;
-    padding: 2rem;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    max-width: 700px;
-  }
-  
-  .resume h1 {
-    font-size: 2.5rem;
-    color: #333;
-  }
-  
-  .resume p {
-    font-size: 1.1rem;
-    color: #666;
-    margin: 0.5rem 0;
-  }
-  
-  .resume-section {
-    margin-top: 2rem;
-  }
-  
-  .resume-section h2 {
-    font-size: 1.3rem;
-    color: #222;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 0.3rem;
-    margin-bottom: 0.8rem;
-  }
-  
-  .resume-section ul {
-    padding-left: 1rem;
-  }
-  
-  .form-section {
-    flex: 1;
-    padding: 3rem 2rem;
+  .resume-preview-wrapper {
+    width: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff;
+    background-color: #dcdcdc;
+    padding: 2rem;
   }
   
-  form {
-    width: 100%;
-    max-width: 400px;
-    transition: transform 0.5s ease;
+  .resume-preview {
+    width: 650px;
+    background: white;
+    padding: 2rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border: 1px solid #ccc;
+    min-height: 90%;
+  }
+  
+  .resume-preview h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .resume-preview h2 {
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ccc;
+    margin: 1.5rem 0 0.5rem;
+  }
+  
+  .resume-preview ul {
+    padding-left: 1.2rem;
+    margin: 0;
+  }
+  
+  .form-container {
+    width: 60%;
+    background: white;
+    padding: 2rem 3rem;
+    overflow-y: auto;
   }
   
   .form-step {
     display: none;
-    flex-direction: column;
   }
   
   .form-step.active {
-    display: flex;
-    animation: fade-in 0.4s ease-in-out;
+    display: block;
   }
   
-  @keyframes fade-in {
-    from { opacity: 0; transform: translateX(30px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-  
-  .form-step h2 {
-    margin-bottom: 1.5rem;
-    font-size: 1.4rem;
-  }
-  
-  .form-step input {
-    padding: 0.75rem;
+  h2 {
     margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
+    font-size: 1.5rem;
+    color: #333;
   }
   
-  .next-step {
+  .form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group.small {
+    max-width: 150px;
+  }
+  
+  label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  input[type=\"text\"], input[type=\"email\"], input[type=\"month\"] {
+    flex: 1;
+    padding: 0.6rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .remove-btn {
+    margin-left: 0.5rem;
+    background-color: #e63946;
+    color: white;
+    border: none;
+    padding: 0.5rem 0.7rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .remove-btn:hover {
+    background-color: #c82333;
+  }
+  
+  .next-btn {
+    margin-top: 1.5rem;
     background-color: #FF7301;
     color: white;
-    padding: 0.75rem;
-    font-size: 1rem;
+    padding: 0.75rem 2rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: 0.3s;
+    font-size: 1rem;
   }
   
-  .next-step:hover {
+  .next-btn:hover {
     background-color: #e56200;
   }
   

@@ -1,46 +1,55 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const steps = document.querySelectorAll(".form-step");
-    const nextBtns = document.querySelectorAll(".next-step");
+document.addEventListener('DOMContentLoaded', () => {
     let currentStep = 0;
+    const steps = document.querySelectorAll('.form-step');
   
-    const updateResume = () => {
-      document.getElementById("preview-name").textContent =
-        document.getElementById("input-name").value || "Your Name";
-  
-      document.getElementById("preview-role").textContent =
-        document.getElementById("input-role").value || "Your Job Title";
-  
-      const email = document.getElementById("input-email").value;
-      const phone = document.getElementById("input-phone").value;
-      const address = document.getElementById("input-address").value;
-      const contact = [email, phone, address].filter(Boolean).join(" | ");
-      document.getElementById("preview-contact").textContent =
-        contact || "Email | Phone | Address";
-  
-      document.getElementById("preview-education").innerHTML =
-        `<li>${document.getElementById("input-education").value}</li>`;
-  
-      document.getElementById("preview-experience").innerHTML =
-        `<li>${document.getElementById("input-experience").value}</li>`;
-  
-      document.getElementById("preview-projects").innerHTML =
-        `<li>${document.getElementById("input-projects").value}</li>`;
-  
-      const hobbies = document.getElementById("input-hobbies").value;
-      document.getElementById("preview-hobbies").innerHTML =
-        hobbies.split(',').map(h => `<li>${h.trim()}</li>`).join('');
+    window.nextStep = () => {
+      if (currentStep < steps.length - 1) {
+        steps[currentStep].classList.remove('active');
+        currentStep += 1;
+        steps[currentStep].classList.add('active');
+      }
     };
   
-    document.getElementById("form").addEventListener("input", updateResume);
+    window.removeField = (id) => {
+      const input = document.getElementById(id);
+      if (input) {
+        input.value = '';
+        updatePreview();
+      }
+    };
   
-    nextBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        steps[currentStep].classList.remove("active");
-        currentStep = Math.min(currentStep + 1, steps.length - 1);
-        steps[currentStep].classList.add("active");
-      });
-    });
+    const updatePreview = () => {
+      document.getElementById('previewName').textContent =
+        document.getElementById('nameInput')?.value || 'Your Name';
   
-    updateResume();
+      const phone = document.getElementById('phoneInput')?.value;
+      const email = document.getElementById('emailInput')?.value;
+      const address = document.getElementById('addressInput')?.value;
+      const contact = [phone, email, address].filter(Boolean).join(' | ');
+      document.getElementById('previewContact').textContent =
+        contact || 'Phone | Email | Address';
+  
+      const institution = document.getElementById('eduInstitution')?.value;
+      const degree = document.getElementById('eduDegree')?.value;
+      const field = document.getElementById('eduField')?.value;
+      const gpa = document.getElementById('eduGPA')?.value;
+      const awards = document.getElementById('eduAwards')?.value;
+      const start = document.getElementById('eduStart')?.value;
+      const end = document.getElementById('eduEnd')?.value;
+  
+      const eduText = [
+        institution && `<strong>${institution}</strong>`,
+        degree,
+        field,
+        (start || end) && `(${start} - ${end})`,
+        gpa && `GPA: ${gpa}`,
+        awards && `Awards: ${awards}`
+      ].filter(Boolean).join(', ');
+  
+      document.getElementById('educationList').innerHTML = eduText ? `<li>${eduText}</li>` : '';
+    };
+  
+    document.getElementById('resumeForm').addEventListener('input', updatePreview);
+    updatePreview();
   });
   
