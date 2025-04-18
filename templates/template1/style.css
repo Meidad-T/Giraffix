@@ -1,133 +1,198 @@
-body {
+/* GLOBAL */
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #eee;
+    background-color: #f6f7fb;
+    color: #333;
+  }
+  
+  .editor-container {
     display: flex;
+    gap: 2rem;
+    padding: 2rem;
     height: 100vh;
     overflow: hidden;
   }
   
-  .container {
-    display: flex;
-    width: 100%;
-  }
-  
-  .resume-preview-wrapper {
-    width: 40%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #dcdcdc;
-    padding: 2rem;
-  }
-  
+  /* LEFT SIDE: RESUME PREVIEW */
   .resume-preview {
-    width: 650px;
-    background: white;
-    padding: 2rem;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    border: 1px solid #ccc;
-    min-height: 90%;
-  }
-  
-  .resume-preview h1 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .resume-preview h2 {
-    font-size: 1.2rem;
-    border-bottom: 1px solid #ccc;
-    margin: 1.5rem 0 0.5rem;
-  }
-  
-  .resume-preview ul {
-    padding-left: 1.2rem;
-    margin: 0;
-  }
-  
-  .form-container {
-    width: 60%;
-    background: white;
-    padding: 2rem 3rem;
-    overflow-y: auto;
-  }
-  
-  .form-step {
-    display: none;
-  }
-  
-  .form-step.active {
-    display: block;
-  }
-  
-  h2 {
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    color: #333;
-  }
-  
-  .form-row {
+    flex: 1;
     display: flex;
-    gap: 1rem;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #e5e7eb;
+    padding: 2rem;
+    border-radius: 15px;
+  }
+  
+  .resume-paper {
+    background-color: white;
+    padding: 2rem 3rem;
+    width: 100%;
+    max-width: 700px;
+    min-height: 90%;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+  }
+  
+  .resume h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0;
+    color: #111827;
+  }
+  
+  .resume p {
+    color: #4b5563;
     margin-bottom: 1rem;
-    flex-wrap: wrap;
+  }
+  
+  .resume section {
+    margin-bottom: 2rem;
+  }
+  
+  .resume .section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    border-bottom: 2px solid #e5e7eb;
+    margin-bottom: 1rem;
+  }
+  
+  .resume .education-entry,
+  .resume .experience-entry,
+  .resume .project-entry {
+    margin-bottom: 1.2rem;
+  }
+  
+  .resume .education-entry p small {
+    color: #6b7280;
+    font-size: 0.85rem;
+  }
+  
+  /* FORM SIDE */
+  .form-area {
+    flex: 1.2;
+    background-color: #ffffff;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+    overflow-y: auto;
+    max-height: 100%;
+  }
+  
+  .form-area h2 {
+    margin-top: 1.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
   }
   
   .form-group {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    margin-bottom: 1.25rem;
   }
   
-  .form-group.small {
-    max-width: 150px;
-  }
-  
-  label {
-    font-weight: 600;
+  .form-group label {
+    display: block;
+    font-weight: 500;
     margin-bottom: 0.5rem;
+    color: #374151;
   }
   
-  .input-wrapper {
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    background-color: #f9fafb;
+    transition: all 0.3s ease;
+  }
+  
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #9ca3af;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #ff7301;
+    background-color: #fff;
+  }
+  
+  /* Editable Section Titles */
+  .resume input.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    border: none;
+    width: 100%;
+    border-bottom: 1px solid #d1d5db;
+    margin-bottom: 0.75rem;
+    background-color: transparent;
+  }
+  
+  .resume input.section-title:focus {
+    outline: none;
+    border-color: #ff7301;
+  }
+  
+  /* CTA BUTTON */
+  .cta-button {
+    background-color: #ff7301;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #e55d00;
+  }
+
+  /* ✅ NAVBAR */
+.navbar {
+    width: 100%;
+    background-color: #ff7301;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-  }
-  
-  input[type=\"text\"], input[type=\"email\"], input[type=\"month\"] {
-    flex: 1;
-    padding: 0.6rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .remove-btn {
-    margin-left: 0.5rem;
-    background-color: #e63946;
-    color: white;
-    border: none;
-    padding: 0.5rem 0.7rem;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .remove-btn:hover {
-    background-color: #c82333;
-  }
-  
-  .next-btn {
-    margin-top: 1.5rem;
-    background-color: #FF7301;
-    color: white;
     padding: 0.75rem 2rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
   }
   
-  .next-btn:hover {
-    background-color: #e56200;
+  .logo-container .logo {
+    height: 40px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .nav-links a {
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .nav-links a:hover {
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
   }
   
