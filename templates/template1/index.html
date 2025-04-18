@@ -3,79 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Edit Resume - Template 1</title>
+  <title>Resume Builder - Template 1</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="builder-container">
-    <div class="resume-preview">
-      <div class="resume">
-        <h1 id="preview-name">Your Name</h1>
-        <p id="preview-role">Your Job Title</p>
-        <p id="preview-contact">Email | Phone | Address</p>
-
-        <div class="resume-section">
+  <div class="container">
+    <!-- Resume Preview -->
+    <div class="resume-preview-wrapper">
+      <div class="resume-preview" id="resumePreview">
+        <div class="resume-section" id="previewBasics">
+          <h1 id="previewName">Your Name</h1>
+          <p id="previewContact">Phone | Email | Address</p>
+        </div>
+        <div class="resume-section" id="previewEducation">
           <h2>Education</h2>
-          <ul id="preview-education"></ul>
+          <ul id="educationList"></ul>
         </div>
-        <div class="resume-section">
-          <h2>Experience</h2>
-          <ul id="preview-experience"></ul>
-        </div>
-        <div class="resume-section">
-          <h2>Projects</h2>
-          <ul id="preview-projects"></ul>
-        </div>
-        <div class="resume-section">
-          <h2>Hobbies & Interests</h2>
-          <ul id="preview-hobbies"></ul>
-        </div>
+        <!-- Other sections omitted for brevity -->
       </div>
     </div>
 
-    <div class="form-section">
-      <form id="form">
-        <!-- Step 1: Basic Info -->
+    <!-- Form Section -->
+    <div class="form-container">
+      <form id="resumeForm">
         <div class="form-step active" data-step="1">
-          <h2>Let's start with the basics...</h2>
-          <input type="text" placeholder="Full Name" id="input-name" />
-          <input type="text" placeholder="Job Title" id="input-role" />
-          <input type="email" placeholder="Email Address" id="input-email" />
-          <input type="tel" placeholder="Phone Number" id="input-phone" />
-          <input type="text" placeholder="Home Address" id="input-address" />
-          <button type="button" class="next-step">Next</button>
-        </div>
+          <h2>Education</h2>
 
-        <!-- Step 2: Education -->
-        <div class="form-step" data-step="2">
-          <h2>Add your Education</h2>
-          <input type="text" placeholder="School Name, Degree, Year" id="input-education" />
-          <button type="button" class="next-step">Next</button>
-        </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Institution</label>
+              <div class="input-wrapper">
+                <input type="text" id="eduInstitution" />
+                <button type="button" class="remove-btn" onclick="removeField('eduInstitution')">X</button>
+              </div>
+            </div>
 
-        <!-- Step 3: Experience -->
-        <div class="form-step" data-step="3">
-          <h2>Tell us about your experience</h2>
-          <input type="text" placeholder="Job Title at Company, Dates" id="input-experience" />
-          <button type="button" class="next-step">Next</button>
-        </div>
+            <div class="form-group">
+              <label>Degree</label>
+              <div class="input-wrapper">
+                <input type="text" id="eduDegree" />
+                <button type="button" class="remove-btn" onclick="removeField('eduDegree')">X</button>
+              </div>
+            </div>
+          </div>
 
-        <!-- Step 4: Projects -->
-        <div class="form-step" data-step="4">
-          <h2>Projects you've worked on</h2>
-          <input type="text" placeholder="Project Name - Short Description" id="input-projects" />
-          <button type="button" class="next-step">Next</button>
-        </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Field of Study</label>
+              <div class="input-wrapper">
+                <input type="text" id="eduField" />
+                <button type="button" class="remove-btn" onclick="removeField('eduField')">X</button>
+              </div>
+            </div>
+            <div class="form-group small">
+              <label>GPA</label>
+              <div class="input-wrapper">
+                <input type="text" id="eduGPA" />
+                <button type="button" class="remove-btn" onclick="removeField('eduGPA')">X</button>
+              </div>
+            </div>
+            <div class="form-group small">
+              <label>Awards</label>
+              <div class="input-wrapper">
+                <input type="text" id="eduAwards" />
+                <button type="button" class="remove-btn" onclick="removeField('eduAwards')">X</button>
+              </div>
+            </div>
+          </div>
 
-        <!-- Step 5: Hobbies -->
-        <div class="form-step" data-step="5">
-          <h2>Your hobbies or interests</h2>
-          <input type="text" placeholder="Hobby 1, Hobby 2..." id="input-hobbies" />
-          <button type="button" class="next-step">Finish</button>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Start Date</label>
+              <input type="month" id="eduStart" />
+            </div>
+            <div class="form-group">
+              <label>End Date</label>
+              <input type="month" id="eduEnd" />
+            </div>
+          </div>
+
+          <button type="button" class="next-btn" onclick="nextStep()">Next</button>
         </div>
       </form>
     </div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
