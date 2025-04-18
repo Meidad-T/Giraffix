@@ -1,8 +1,9 @@
+// script.js
+
 document.addEventListener("DOMContentLoaded", () => {
   const bind = (inputId, targetId, fallback = '') => {
     const input = document.getElementById(inputId);
     const target = document.getElementById(targetId);
-
     if (!input || !target) return;
     const update = () => {
       target.textContent = input.value.trim() || fallback;
@@ -46,13 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const gpa = document.getElementById('edu-gpa')?.value;
     const start = document.getElementById('edu-start')?.value;
     const end = document.getElementById('edu-end')?.value;
-
     const startYear = start?.split('-')[0];
     const endYear = end?.split('-')[0];
-
     const bulletItems = eduBullets.filter(b => b.trim() !== '');
     const bulletHTML = bulletItems.length ? '<ul>' + bulletItems.map(b => `<li>${b}</li>`).join('') + '</ul>' : '';
-
     const educationHTML = `
       <div class="education-entry">
         <p><strong>${school || ''}</strong> - ${degree || ''} ${gpa ? `(GPA: ${gpa})` : ''}</p>
@@ -60,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ${bulletHTML}
       </div>
     `;
-
     document.getElementById('education-section').innerHTML = educationHTML;
   };
 
@@ -120,7 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     document.getElementById('projects-section').innerHTML = html;
   };
-
   projTitle.addEventListener('input', renderProject);
   projDesc.addEventListener('input', renderProject);
 
@@ -130,10 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const start = document.getElementById('exp-start')?.value;
     const end = document.getElementById('exp-end')?.value;
     const desc = document.getElementById('exp-desc')?.value.trim();
-
     const startDate = start ? start.split('-').reverse().join('/') : '';
     const endDate = end ? end.split('-').reverse().join('/') : '';
-
     const experienceHTML = `
       <div class="experience-entry">
         <p><strong>${title || ''}</strong> at ${company || ''}</p>
@@ -141,16 +135,38 @@ document.addEventListener("DOMContentLoaded", () => {
         <p>${desc || ''}</p>
       </div>
     `;
-
     document.getElementById('experience-section').innerHTML = experienceHTML;
   };
-
   ['exp-title', 'exp-company', 'exp-start', 'exp-end', 'exp-desc'].forEach(id => {
     const input = document.getElementById(id);
     if (input) input.addEventListener('input', renderExperience);
   });
 
   document.getElementById('resume-form').addEventListener('submit', e => e.preventDefault());
+
+  const resume = document.getElementById('resume');
+  const colorInput = document.getElementById('resume-color');
+
+  const updateGradient = () => {
+    const color = colorInput.value;
+    resume.style.background = `linear-gradient(180deg, ${color}, #ffffff)`;
+  };
+
+  colorInput.addEventListener('input', updateGradient);
+  updateGradient();
+
+  const finalColorInput = document.getElementById('resume-color-final');
+if (finalColorInput) {
+  finalColorInput.addEventListener('input', () => {
+    const color = finalColorInput.value;
+    resume.style.background = `linear-gradient(180deg, ${color}, #ffffff)`;
+    colorInput.value = color; // sync original picker
+  });
+
+  colorInput.addEventListener('input', () => {
+    finalColorInput.value = colorInput.value; // keep synced
+  });
+}
 
   updateContact();
   renderEducation();
@@ -182,4 +198,34 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   updateSectionView();
-});
+
+// ✅ Download PDF logic
+const downloadBtn = document.getElementById('download-btn');
+if (downloadBtn) {
+  downloadBtn.addEventListener('click', () => {
+    const element = document.getElementById('resume');
+
+    const opt = {
+      margin:       [40, 40, 40, 40], // top, left, bottom, right in points (~0.56in)
+      filename:     'resume.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  {
+        scale: 2,
+        logging: false,
+        useCORS: true,
+        scrollY: 0
+      },
+      jsPDF: {
+        unit: 'pt',
+        format: 'a4',
+        orientation: 'portrait'
+      },
+      pagebreak: {
+        mode: ['avoid-all', 'css', 'legacy']
+      }
+    };
+
+    html2pdf().set(opt).from(element).save();
+  }); // ✅ this closes the .addEventListener
+} 
+})

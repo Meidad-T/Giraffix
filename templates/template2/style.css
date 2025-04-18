@@ -24,9 +24,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background-color: #e5e7eb; /* Reverted to original color */
+  background-color: #e5e7eb;
   padding: 2rem;
   border-radius: 15px;
+  overflow-y: auto; /* <-- added */
+  max-height: 100%;
 }
 
 .resume-paper {
@@ -41,10 +43,11 @@ body {
 
 .resume {
   position: relative;
-  padding: 20px;
+  padding: 40px;
   border-radius: 10px;
-  background: linear-gradient(180deg, #e0f7fa, #ffffff);
+  transition: background 0.3s ease;
 }
+
 
 .resume h1 {
   font-size: 2.5rem;
@@ -317,4 +320,35 @@ body {
   width: 100%;
   max-width: 100%;
 }
+
+.resume *, .resume section,
+.education-entry, .experience-entry, .project-entry {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+@media print {
+  body {
+    background: white;
+  }
+
+  .editor-container {
+    display: block;
+  }
+
+  .resume-preview {
+    overflow: visible !important;
+    padding: 0;
+  }
+
+  .form-area {
+    display: none;
+  }
+
+  .resume-paper {
+    box-shadow: none;
+    padding: 0;
+  }
+}
+
 
