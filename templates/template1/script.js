@@ -1,55 +1,101 @@
-document.addEventListener('DOMContentLoaded', () => {
-    let currentStep = 0;
-    const steps = document.querySelectorAll('.form-step');
+document.addEventListener("DOMContentLoaded", () => {
+    const bind = (inputId, targetId, fallback = '') => {
+      const input = document.getElementById(inputId);
+      const target = document.getElementById(targetId);
   
-    window.nextStep = () => {
-      if (currentStep < steps.length - 1) {
-        steps[currentStep].classList.remove('active');
-        currentStep += 1;
-        steps[currentStep].classList.add('active');
-      }
+      if (!input || !target) return;
+      const update = () => {
+        target.textContent = input.value.trim() || fallback;
+      };
+      input.addEventListener('input', update);
+      update(); // initial
     };
   
-    window.removeField = (id) => {
+    bind('input-name', 'name', 'Your Name');
+    bind('input-phone', 'contact');
+    bind('input-email', 'contact');
+    bind('input-address', 'contact');
+  
+    // Combine contact fields
+    const updateContact = () => {
+      const phone = document.getElementById('input-phone')?.value.trim();
+      const email = document.getElementById('input-email')?.value.trim();
+      const address = document.getElementById('input-address')?.value.trim();
+      const combined = [phone, email, address].filter(Boolean).join(" | ");
+      document.getElementById('contact').textContent = combined || 'Phone | Email | Address';
+    };
+  
+    ['input-phone', 'input-email', 'input-address'].forEach(id => {
       const input = document.getElementById(id);
-      if (input) {
-        input.value = '';
-        updatePreview();
-      }
+      if (input) input.addEventListener('input', updateContact);
+    });
+  
+    // Summary
+    const summaryInput = document.getElementById('input-summary');
+    const summaryPreview = document.getElementById('summary');
+    summaryInput.addEventListener('input', () => {
+      summaryPreview.textContent = summaryInput.value.trim() || 'A passionate and detail-oriented professional...';
+    });
+  
+    // Education section
+    const renderEducation = () => {
+      const school = document.getElementById('edu-school').value;
+      const degree = document.getElementById('edu-degree').value;
+      const start = document.getElementById('edu-start').value;
+      const end = document.getElementById('edu-end').value;
+  
+      const educationHTML = `
+        <div class="education-entry">
+          <p><strong>${school || ''}</strong> - ${degree || ''}</p>
+          <p><small>${start || ''} to ${end || ''}</small></p>
+        </div>
+      `;
+      document.getElementById('education-section').innerHTML = educationHTML;
     };
   
-    const updatePreview = () => {
-      document.getElementById('previewName').textContent =
-        document.getElementById('nameInput')?.value || 'Your Name';
+    ['edu-school', 'edu-degree', 'edu-start', 'edu-end'].forEach(id => {
+      const input = document.getElementById(id);
+      if (input) input.addEventListener('input', renderEducation);
+    });
   
-      const phone = document.getElementById('phoneInput')?.value;
-      const email = document.getElementById('emailInput')?.value;
-      const address = document.getElementById('addressInput')?.value;
-      const contact = [phone, email, address].filter(Boolean).join(' | ');
-      document.getElementById('previewContact').textContent =
-        contact || 'Phone | Email | Address';
+    // Skills
+    const skillsInput = document.getElementById('skills-input');
+    skillsInput.addEventListener('input', () => {
+      const list = skillsInput.value.split(',').map(skill => skill.trim()).filter(Boolean);
+      document.getElementById('skills-list').innerHTML = list.map(skill => `<li>${skill}</li>`).join('');
+    });
   
-      const institution = document.getElementById('eduInstitution')?.value;
-      const degree = document.getElementById('eduDegree')?.value;
-      const field = document.getElementById('eduField')?.value;
-      const gpa = document.getElementById('eduGPA')?.value;
-      const awards = document.getElementById('eduAwards')?.value;
-      const start = document.getElementById('eduStart')?.value;
-      const end = document.getElementById('eduEnd')?.value;
+    // Interests
+    const interestsInput = document.getElementById('interests-input');
+    interestsInput.addEventListener('input', () => {
+      const list = interestsInput.value.split(',').map(int => int.trim()).filter(Boolean);
+      document.getElementById('interests-list').innerHTML = list.map(int => `<li>${int}</li>`).join('');
+    });
   
-      const eduText = [
-        institution && `<strong>${institution}</strong>`,
-        degree,
-        field,
-        (start || end) && `(${start} - ${end})`,
-        gpa && `GPA: ${gpa}`,
-        awards && `Awards: ${awards}`
-      ].filter(Boolean).join(', ');
-  
-      document.getElementById('educationList').innerHTML = eduText ? `<li>${eduText}</li>` : '';
+    // Projects
+    const projTitle = document.getElementById('proj-title');
+    const projDesc = document.getElementById('proj-desc');
+    const renderProject = () => {
+      const html = `
+        <div class="project-entry">
+          <p><strong>${projTitle.value}</strong></p>
+          <p>${projDesc.value}</p>
+        </div>
+      `;
+      document.getElementById('projects-section').innerHTML = html;
     };
   
-    document.getElementById('resumeForm').addEventListener('input', updatePreview);
-    updatePreview();
+    projTitle.addEventListener('input', renderProject);
+    projDesc.addEventListener('input', renderProject);
+  
+    // Live update on form submit (disable default)
+    document.getElementById('resume-form').addEventListener('submit', e => {
+      e.preventDefault();
+    });
+  
+    // Init render
+    updateContact();
+    renderEducation();
+    renderProject();
   });
   
