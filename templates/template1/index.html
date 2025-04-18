@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Resume - Template 1</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="builder-container">
+    <div class="resume-preview">
+      <div class="resume">
+        <h1 id="preview-name">Your Name</h1>
+        <p id="preview-role">Your Job Title</p>
+        <p id="preview-contact">Email | Phone | Address</p>
+
+        <div class="resume-section">
+          <h2>Education</h2>
+          <ul id="preview-education"></ul>
+        </div>
+        <div class="resume-section">
+          <h2>Experience</h2>
+          <ul id="preview-experience"></ul>
+        </div>
+        <div class="resume-section">
+          <h2>Projects</h2>
+          <ul id="preview-projects"></ul>
+        </div>
+        <div class="resume-section">
+          <h2>Hobbies & Interests</h2>
+          <ul id="preview-hobbies"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <form id="form">
+        <!-- Step 1: Basic Info -->
+        <div class="form-step active" data-step="1">
+          <h2>Let's start with the basics...</h2>
+          <input type="text" placeholder="Full Name" id="input-name" />
+          <input type="text" placeholder="Job Title" id="input-role" />
+          <input type="email" placeholder="Email Address" id="input-email" />
+          <input type="tel" placeholder="Phone Number" id="input-phone" />
+          <input type="text" placeholder="Home Address" id="input-address" />
+          <button type="button" class="next-step">Next</button>
+        </div>
+
+        <!-- Step 2: Education -->
+        <div class="form-step" data-step="2">
+          <h2>Add your Education</h2>
+          <input type="text" placeholder="School Name, Degree, Year" id="input-education" />
+          <button type="button" class="next-step">Next</button>
+        </div>
+
+        <!-- Step 3: Experience -->
+        <div class="form-step" data-step="3">
+          <h2>Tell us about your experience</h2>
+          <input type="text" placeholder="Job Title at Company, Dates" id="input-experience" />
+          <button type="button" class="next-step">Next</button>
+        </div>
+
+        <!-- Step 4: Projects -->
+        <div class="form-step" data-step="4">
+          <h2>Projects you've worked on</h2>
+          <input type="text" placeholder="Project Name - Short Description" id="input-projects" />
+          <button type="button" class="next-step">Next</button>
+        </div>
+
+        <!-- Step 5: Hobbies -->
+        <div class="form-step" data-step="5">
+          <h2>Your hobbies or interests</h2>
+          <input type="text" placeholder="Hobby 1, Hobby 2..." id="input-hobbies" />
+          <button type="button" class="next-step">Finish</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
