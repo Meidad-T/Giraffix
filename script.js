@@ -117,6 +117,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Trigger scroll event once to check initial positions
     window.dispatchEvent(new Event('scroll'));
+
+    // ✅ Enable giraffe floating ONLY on mobile
+    const giraffe = document.querySelector('.giraffe-mascot');
+    if (giraffe) {
+        if (window.innerWidth <= 768) {
+            giraffe.style.animation = 'none';
+        } else {
+            giraffe.style.animation = 'float 6s ease-in-out infinite';
+        }
+    }
 });
 
 
@@ -130,19 +140,19 @@ document.querySelectorAll('.carousel-preview').forEach(preview => {
     let showingFirst = true;
   
     setInterval(() => {
-      current = (current % total) + 1;
-      const nextImg = `${folder}/preview_${current}.png`;
-  
-      if (showingFirst) {
-        img2.src = nextImg;
-        img2.classList.add('active');
-        img1.classList.remove('active');
-      } else {
-        img1.src = nextImg;
-        img1.classList.add('active');
-        img2.classList.remove('active');
-      }
-  
-      showingFirst = !showingFirst;
+        current = (current % total) + 1;
+        const nextImg = `${folder}/preview_${current}.png`;
+    
+        if (showingFirst) {
+            img2.src = nextImg;
+            img2.classList.add('active');
+            img1.classList.remove('active');
+        } else {
+            img1.src = nextImg;
+            img1.classList.add('active');
+            img2.classList.remove('active');
+        }
+    
+        showingFirst = !showingFirst;
     }, 3000);
-  });
+});
