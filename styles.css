@@ -183,9 +183,9 @@ body {
 /* Giraffe mascot and elements */
 .giraffe-mascot {
     height: 300px;
-    scale: 1.7;
+    scale: 2.2;
     position: absolute;
-    right: 5%;
+    right: 15%;
     bottom: 0;
     z-index: 3;
     animation: float 6s ease-in-out infinite;
@@ -206,7 +206,8 @@ body {
 /* Floating resume */
 .floating-resume {
     position: absolute;
-    right: 35%;
+    right: 50%;
+    scale: 1.4;
     top: 20%;
     z-index: 2;
     animation: float-resume 8s ease-in-out infinite, rotate-resume 15s linear infinite;

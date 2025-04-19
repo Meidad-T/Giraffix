@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Templates - Giraffe</title>
+    <link rel="stylesheet" href="templates.css">
+</head>
+<script src="templates.js"></script>
+<body>
+    <!-- Reuse Navbar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="assets/girrafe_logo.png" alt="Giraffe Resume Logo" class="logo">
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Resume Editor</a>
+            <a href="templates.html">Templates</a>
+            <a href="#">FAQ</a>
+            <a href="#">Log in</a>
+        </div>
+    </nav>
+
+    <!-- Template Gallery -->
+    <section class="template-gallery">
+        <h1 class="section-title">Choose a Resume Template</h1>
+        <div class="template-grid">
+            <div class="template-card">
+                <img src="templates/template1/preview.png" alt="Template 1 Preview">
+                <h3>Simple & Clean</h3>
+                <a href="templates/template1/index.html" class="cta-button">Use This Template</a>
+            </div>
+
+            <!-- Repeat card blocks for other templates -->
+            <div class="template-card">
+                <div class="carousel-wrapper">
+                  <div class="carousel-preview" data-folder="templates/template2" data-total="4">
+                    <img class="carousel-img active" src="templates/template2/preview_1.png" alt="Template Preview 1">
+                    <img class="carousel-img" src="templates/template2/preview_2.png" alt="Template Preview 2">
+                  </div>
+                </div>
+                <h3>Colorful Dream</h3>
+                <!-- <p class="template-subtitle">Fully Customizable!</p> -->
+                <a href="templates/template2/index.html" class="cta-button">Use This Template</a>
+              </div>
+
+
+              
+            <div class="template-card">
+                <img src="templates/template3/preview.png" alt="Template 3 Preview">
+                <h3>Simple and Clean</h3>
+                <a href="templates/template3/index.html" class="cta-button">Use This Template</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
