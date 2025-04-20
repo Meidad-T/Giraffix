@@ -9,23 +9,34 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ff7301;
-    padding: 1rem;
+    background-color: #FF7301;
+    padding: 0.5rem 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.logo-container .logo {
-    height: 50px;
+.logo {
+    height: 44px; /* Half the original size for better fit in navbar */
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
-    margin: 0 15px;
-    transition: color 0.3s;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #ffcc00; /* Highlight color on hover */
+    color: #fce353;
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
 }
 
 .template-gallery {
