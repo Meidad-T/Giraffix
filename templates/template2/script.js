@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const element = document.getElementById('resume');
 
       const opt = {
-        margin:       [40, 40, 40, 40],
+        margin:       [70, 40, 70, 40],
         filename:     'resume.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
         html2canvas:  {
