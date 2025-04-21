@@ -1,63 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume Templates - Giraffe</title>
-    <link rel="stylesheet" href="templates.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Templates - Giraffe</title>
+  <link rel="stylesheet" href="templates.css" />
 </head>
-<script src="templates.js"></script>
+
 <body>
-    <!-- Reuse Navbar -->
-    <nav class="navbar">
-        <div class="logo-container">
-            <a href="index.html">
-                <img src="../../assets/girrafe_logo.png" alt="Giraffe Resume Logo" class="logo" />
-            </a>
+  <!-- Reuse Navbar -->
+  <nav class="navbar">
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="../../assets/girrafe_logo.png" alt="Giraffe Resume Logo" class="logo" />
+      </a>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Resume Editor</a>
+      <a href="templates.html">Templates</a>
+      <a href="faq.html">FAQ</a>
+      <a href="#">Log in</a>
+    </div>
+  </nav>
+
+   <div class="container">
+
+  <!-- Template Gallery -->
+  <section class="template-gallery">
+    <h1 class="section-title">Choose a Resume Template</h1>
+
+    <!-- Import Button -->
+    <div class="import-wrapper" style="text-align: center; margin: 2rem 0 3rem 0;">
+      <label class="cta-button" style="cursor: pointer; display: inline-block;">
+        Import .giraffe File
+        <input type="file" id="import-giraffe" accept=".giraffe,application/json" style="display: none;" />
+      </label>
+    </div>
+
+    <!-- Template Grid -->
+    <div class="template-grid">
+      <div class="template-card">
+        <div class="carousel-wrapper">
+          <div class="carousel-preview" data-folder="templates/template1" data-total="1">
+            <img class="carousel-img active" src="templates/template1/preview.png" alt="Template 1 Preview" />
+          </div>
         </div>
-        <div class="nav-links">
-            <a href="index.html">Resume Editor</a>
-            <a href="templates.html">Templates</a>
-            <a href="faq.html">FAQ</a>
-            <a href="#">Log in</a>
+        <h3>Simple & Clean</h3>
+        <a href="templates/template1/index.html" class="cta-button">Use This Template</a>
+      </div>
+
+      <div class="template-card">
+        <div class="carousel-wrapper">
+          <div class="carousel-preview" data-folder="templates/template2" data-total="4">
+            <img class="carousel-img active" src="templates/template2/preview_1.png" alt="Template Preview 1" />
+            <img class="carousel-img" src="templates/template2/preview_2.png" alt="Template Preview 2" />
+          </div>
         </div>
-    </nav>
+        <h3>Colorful Dream</h3>
+        <a href="templates/template2/index.html" class="cta-button">Use This Template</a>
+      </div>
 
-    <!-- Template Gallery -->
-    <section class="template-gallery">
-        <h1 class="section-title">Choose a Resume Template</h1>
-        <div class="template-grid">
-            <div class="template-card">
-                <div class="carousel-wrapper">
-                    <div class="carousel-preview" data-folder="templates/template1" data-total="1">
-                        <img class="carousel-img active" src="templates/template1/preview.png" alt="Template 1 Preview">
-                    </div>
-                </div>
-                <h3>Simple & Clean</h3>
-                <a href="templates/template1/index.html" class="cta-button">Use This Template</a>
-            </div>
+      <div class="template-card">
+        <img src="templates/template3/preview.png" alt="Template 3 Preview" />
+        <h3>Simple and Clean</h3>
+        <a href="templates/template3/index.html" class="cta-button">Use This Template</a>
+      </div>
+    </div>
+  </section>
 
-            <!-- Repeat card blocks for other templates -->
-            <div class="template-card">
-                <div class="carousel-wrapper">
-                  <div class="carousel-preview" data-folder="templates/template2" data-total="4">
-                    <img class="carousel-img active" src="templates/template2/preview_1.png" alt="Template Preview 1">
-                    <img class="carousel-img" src="templates/template2/preview_2.png" alt="Template Preview 2">
-                  </div>
-                </div>
-                <h3>Colorful Dream</h3>
-                <!-- <p class="template-subtitle">Fully Customizable!</p> -->
-                <a href="templates/template2/index.html" class="cta-button">Use This Template</a>
-              </div>
-
-
-              
-            <div class="template-card">
-                <img src="templates/template3/preview.png" alt="Template 3 Preview">
-                <h3>Simple and Clean</h3>
-                <a href="templates/template3/index.html" class="cta-button">Use This Template</a>
-            </div>
-        </div>
-    </section>
+  <script src="templates.js"></script>
 </body>
 </html>
