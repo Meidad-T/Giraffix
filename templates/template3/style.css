@@ -14,13 +14,15 @@ body {
   display: flex;
   gap: 2rem;
   padding: 2rem;
-  height: 100vh;
-  overflow: hidden;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 /* LEFT SIDE: RESUME PREVIEW */
 .resume-preview {
   flex: 1;
+  max-height: 100vh;
+  overflow-y: auto;
   display: flex;
   justify-content: center;
   align-items: flex-start;
