@@ -1,6 +1,76 @@
 // script.js
 
 document.addEventListener("DOMContentLoaded", () => {
+  const importedData = sessionStorage.getItem("giraffe-import-data");
+  const eduBullets = [];
+
+  const resume = document.getElementById('resume');
+  const colorInput = document.getElementById('resume-color');
+  const textColorInput = document.getElementById('text-color');
+  const finalColorInput = document.getElementById('resume-color-final');
+  const finalTextColorInput = document.getElementById('text-color-final');
+
+  const applyTextColor = (color) => {
+    document.querySelectorAll('#resume h1, #resume p, #resume li, #resume .section-title').forEach(el => {
+      el.style.color = color;
+    });
+  };
+
+  const updateGradient = () => {
+    const color = colorInput.value;
+    resume.style.background = `linear-gradient(180deg, ${color}, #ffffff)`;
+  };
+
+  if (importedData) {
+    const data = JSON.parse(importedData);
+    const set = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.value = val || '';
+    };
+
+    set('input-name', data.name);
+    set('input-phone', data.phone);
+    set('input-email', data.email);
+    set('input-address', data.address);
+    set('input-summary', data.summary);
+
+    if (data.education?.[0]) {
+      set('edu-school', data.education[0].school);
+      set('edu-degree', data.education[0].degree);
+      set('edu-gpa', data.education[0].gpa);
+      set('edu-start', data.education[0].startDate);
+      set('edu-end', data.education[0].endDate);
+      if (Array.isArray(data.education[0].bullets)) {
+        data.education[0].bullets.forEach(b => eduBullets.push(b));
+      }
+    }
+
+    if (data.experience?.[0]) {
+      set('exp-title', data.experience[0].title);
+      set('exp-company', data.experience[0].company);
+      set('exp-start', data.experience[0].startDate);
+      set('exp-end', data.experience[0].endDate);
+      set('exp-desc', data.experience[0].description);
+    }
+
+    set('skills-input', (data.skills || []).join(', '));
+    set('interests-input', (data.interests || []).join(', '));
+    set('proj-title', data.projects?.[0]?.title);
+    set('proj-desc', data.projects?.[0]?.description);
+
+    if (data.colors) {
+      colorInput.value = data.colors.background;
+      textColorInput.value = data.colors.text;
+      resume.style.background = `linear-gradient(180deg, ${data.colors.background}, #ffffff)`;
+      applyTextColor(data.colors.text);
+
+      if (finalColorInput) finalColorInput.value = data.colors.background;
+      if (finalTextColorInput) finalTextColorInput.value = data.colors.text;
+    }
+
+    sessionStorage.removeItem("giraffe-import-data");
+  }
+
   const bind = (inputId, targetId, fallback = '') => {
     const input = document.getElementById(inputId);
     const target = document.getElementById(targetId);
@@ -36,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
     summaryPreview.textContent = summaryInput.value.trim() || 'A passionate and detail-oriented professional...';
   });
 
-  const eduBullets = [];
   const bulletContainer = document.createElement('div');
   bulletContainer.id = "edu-bullets-container";
   document.querySelector('[id="edu-end"]').closest('.form-section').appendChild(bulletContainer);
@@ -144,30 +213,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById('resume-form').addEventListener('submit', e => e.preventDefault());
 
-  const resume = document.getElementById('resume');
-  const colorInput = document.getElementById('resume-color');
-  const textColorInput = document.getElementById('text-color');
-
-  const applyTextColor = (color) => {
-    document.querySelectorAll('#resume h1, #resume p, #resume li, #resume .section-title').forEach(el => {
-      el.style.color = color;
-    });
-  };
-
-  const updateGradient = () => {
-    const color = colorInput.value;
-    resume.style.background = `linear-gradient(180deg, ${color}, #ffffff)`;
-  };
-
-  colorInput.addEventListener('input', updateGradient);
-  textColorInput?.addEventListener('input', () => applyTextColor(textColorInput.value));
-
-  updateGradient();
-  applyTextColor(textColorInput?.value || '#00796b');
-
-  const finalColorInput = document.getElementById('resume-color-final');
-  const finalTextColorInput = document.getElementById('text-color-final');
-
   if (finalColorInput) {
     finalColorInput.addEventListener('input', () => {
       const color = finalColorInput.value;
@@ -246,6 +291,65 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       html2pdf().set(opt).from(element).save();
+    });
+  }
+
+  // ✅ Export to .giraffe logic
+  const giraffeBtn = document.getElementById('download-giraffe-btn');
+  if (giraffeBtn) {
+    giraffeBtn.addEventListener('click', () => {
+      const getValue = id => document.getElementById(id)?.value?.trim() || "";
+
+      const data = {
+        fileVersion: "1.0",
+        templateName: "template2",
+        userData: {
+          name: getValue('input-name'),
+          phone: getValue('input-phone'),
+          email: getValue('input-email'),
+          address: getValue('input-address'),
+          summary: getValue('input-summary'),
+          education: [
+            {
+              school: getValue('edu-school'),
+              degree: getValue('edu-degree'),
+              gpa: getValue('edu-gpa'),
+              startDate: getValue('edu-start'),
+              endDate: getValue('edu-end'),
+              bullets: [...document.querySelectorAll('.edu-bullet-input')].map(b => b.value.trim()).filter(Boolean)
+            }
+          ],
+          experience: [
+            {
+              title: getValue('exp-title'),
+              company: getValue('exp-company'),
+              startDate: getValue('exp-start'),
+              endDate: getValue('exp-end'),
+              description: getValue('exp-desc')
+            }
+          ],
+          skills: getValue('skills-input').split(',').map(s => s.trim()).filter(Boolean),
+          interests: getValue('interests-input').split(',').map(i => i.trim()).filter(Boolean),
+          projects: [
+            {
+              title: getValue('proj-title'),
+              description: getValue('proj-desc')
+            }
+          ],
+          colors: {
+            background: document.getElementById('resume-color')?.value || "#ffffff",
+            text: document.getElementById('text-color')?.value || "#000000"
+          }
+        }
+      };
+
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Resume.giraffe';
+      a.click();
+      URL.revokeObjectURL(url);
     });
   }
 });

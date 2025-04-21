@@ -1,8 +1,59 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // ✅ Load imported giraffe data (if exists)
+  const importedData = sessionStorage.getItem("giraffe-import-data");
+  const eduBullets = [];
+
+  if (importedData) {
+    const data = JSON.parse(importedData);
+    const setValue = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.value = val || '';
+    };
+
+    // Basic Info
+    setValue('input-name', data.name);
+    setValue('input-phone', data.phone);
+    setValue('input-email', data.email);
+    setValue('input-address', data.address);
+    setValue('input-summary', data.summary);
+
+    // Education
+    if (data.education?.[0]) {
+      setValue('edu-school', data.education[0].school);
+      setValue('edu-degree', data.education[0].degree);
+      setValue('edu-gpa', data.education[0].gpa);
+      setValue('edu-start', data.education[0].startDate);
+      setValue('edu-end', data.education[0].endDate);
+      if (Array.isArray(data.education[0].bullets)) {
+        data.education[0].bullets.forEach(b => eduBullets.push(b));
+      }
+    }
+
+    // Experience
+    if (data.experience?.[0]) {
+      setValue('exp-title', data.experience[0].title);
+      setValue('exp-company', data.experience[0].company);
+      setValue('exp-start', data.experience[0].startDate);
+      setValue('exp-end', data.experience[0].endDate);
+      setValue('exp-desc', data.experience[0].description);
+    }
+
+    // Skills & Interests
+    setValue('skills-input', (data.skills || []).join(', '));
+    setValue('interests-input', (data.interests || []).join(', '));
+
+    // Projects
+    if (data.projects?.[0]) {
+      setValue('proj-title', data.projects[0].title);
+      setValue('proj-desc', data.projects[0].description);
+    }
+
+    sessionStorage.removeItem("giraffe-import-data");
+  }
+
   const bind = (inputId, targetId, fallback = '') => {
     const input = document.getElementById(inputId);
     const target = document.getElementById(targetId);
-
     if (!input || !target) return;
     const update = () => {
       target.textContent = input.value.trim() || fallback;
@@ -35,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
     summaryPreview.textContent = summaryInput.value.trim() || 'A passionate and detail-oriented professional...';
   });
 
-  const eduBullets = [];
   const bulletContainer = document.createElement('div');
   bulletContainer.id = "edu-bullets-container";
   document.querySelector('[id="edu-end"]').closest('.form-section').appendChild(bulletContainer);
@@ -120,7 +170,6 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     document.getElementById('projects-section').innerHTML = html;
   };
-
   projTitle.addEventListener('input', renderProject);
   projDesc.addEventListener('input', renderProject);
 
@@ -153,6 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('resume-form').addEventListener('submit', e => e.preventDefault());
 
   updateContact();
+  renderEduBullets();
   renderEducation();
   renderExperience();
   renderProject();
@@ -189,7 +239,6 @@ const downloadBtn = document.getElementById('download-btn');
 if (downloadBtn) {
   downloadBtn.addEventListener('click', () => {
     const element = document.querySelector('.resume');
-
     const opt = {
       margin: [70, 40, 70, 40],
       filename: 'resume.pdf',
@@ -209,7 +258,61 @@ if (downloadBtn) {
         mode: ['avoid-all', 'css', 'legacy']
       }
     };
-
     html2pdf().set(opt).from(element).save();
+  });
+}
+
+// ✅ Export to .giraffe logic
+const giraffeBtn = document.getElementById('download-giraffe-btn');
+if (giraffeBtn) {
+  giraffeBtn.addEventListener('click', () => {
+    const getValue = id => document.getElementById(id)?.value?.trim() || "";
+
+    const data = {
+      fileVersion: "1.0",
+      templateName: "template3",
+      userData: {
+        name: getValue('input-name'),
+        phone: getValue('input-phone'),
+        email: getValue('input-email'),
+        address: getValue('input-address'),
+        summary: getValue('input-summary'),
+        education: [
+          {
+            school: getValue('edu-school'),
+            degree: getValue('edu-degree'),
+            gpa: getValue('edu-gpa'),
+            startDate: getValue('edu-start'),
+            endDate: getValue('edu-end'),
+            bullets: [...document.querySelectorAll('.edu-bullet-input')].map(b => b.value.trim()).filter(Boolean)
+          }
+        ],
+        experience: [
+          {
+            title: getValue('exp-title'),
+            company: getValue('exp-company'),
+            startDate: getValue('exp-start'),
+            endDate: getValue('exp-end'),
+            description: getValue('exp-desc')
+          }
+        ],
+        skills: getValue('skills-input').split(',').map(s => s.trim()).filter(Boolean),
+        interests: getValue('interests-input').split(',').map(i => i.trim()).filter(Boolean),
+        projects: [
+          {
+            title: getValue('proj-title'),
+            description: getValue('proj-desc')
+          }
+        ]
+      }
+    };
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Resume.giraffe';
+    a.click();
+    URL.revokeObjectURL(url);
   });
 }
