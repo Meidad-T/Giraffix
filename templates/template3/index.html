@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Template 1 - Resume Editor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo-container">
+          <img src="../../assets/girrafe_logo.png" alt="Giraffe Resume Logo" class="logo" />
+        </div>
+        <div class="nav-links">
+          <a href="../../index.html">Home</a>
+          <a href="../../templates.html">Templates</a>
+          <a href="#">FAQ</a>
+          <a href="#">Log in</a>
+        </div>
+      </nav>
+      
+  <div class="editor-container">
+    <!-- Resume Preview -->
+    <div class="resume-preview">
+      <div class="resume-paper">
+        <div class="resume">
+          <h1 id="name">Your Name</h1>
+          <p id="contact">Phone | Email | Address</p>
+
+          <section>
+            <input type="text" class="section-title" value="Professional Summary" />
+            <p id="summary">A passionate and detail-oriented professional...</p>
+          </section>
+
+          <section>
+            <input type="text" class="section-title" value="Education" />
+            <div id="education-section"></div>
+          </section>
+
+          <section>
+            <input type="text" class="section-title" value="Experience" />
+            <div id="experience-section"></div>
+          </section>
+
+          <section>
+            <input type="text" class="section-title" value="Skills" />
+            <ul id="skills-list"></ul>
+          </section>
+
+          <section>
+            <input type="text" class="section-title" value="Interests" />
+            <ul id="interests-list"></ul>
+          </section>
+
+          <section>
+            <input type="text" class="section-title" value="Personal Projects" />
+            <div id="projects-section"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Side -->
+    <div class="form-area">
+      <form id="resume-form">
+
+        <div class="form-sections-wrapper">
+          
+          <!-- SECTION 1: Basics -->
+          <div class="form-section">
+            <h2>Let's Start with the Basics</h2>
+            <div class="form-group">
+              <label for="input-name">Full Name</label>
+              <input type="text" id="input-name" class="input-medium_2" />
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="input-name">Phone Number</label>
+                <input type="text" id="input-phone" class="input-" />
+              </div>
+              <div class="form-group half"><label for="input-email">Email</label><input type="email" id="input-email" /></div>
+            </div>
+            <div class="form-group"><label for="input-address">Address</label><input type="text" id="input-address" /></div>
+          </div>
+      
+          <!-- SECTION 2: Summary -->
+          <div class="form-section">
+            <h2>Professional Summary</h2>
+            <div class="form-group"><label for="input-summary">Summary</label><textarea id="input-summary" placeholder="Write a short paragraph about yourself..." rows="5"></textarea></div>
+          </div>
+      
+          <!-- SECTION 3: Education -->
+          <div class="form-section">
+            <h2>Education</h2>
+            <div class="form-group"><label for="edu-school">School</label><input type="text" id="edu-school" placeholder="University of XYZ" /></div>
+            <div class="form-grid-2">
+              <div class="form-group half"><label for="edu-degree">Degree</label><input type="text" id="edu-degree" placeholder="B.Sc. Computer Science" /></div>
+              <div class="form-group half"><label for="edu-gpa">GPA</label><input type="text" id="edu-gpa" placeholder="e.g. 3.8" /></div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group half"><label for="edu-start">Start Date</label><input type="month" id="edu-start" /></div>
+              <div class="form-group half"><label for="edu-end">End Date</label><input type="month" id="edu-end" /></div>
+            </div>
+          </div>
+      
+          <!-- SECTION 4: Experience -->
+          <div class="form-section">
+            <h2>Experience</h2>
+            <div class="form-group"><label for="exp-title">Job Title</label><input type="text" id="exp-title" /></div>
+            <div class="form-group"><label for="exp-company">Company</label><input type="text" id="exp-company" /></div>
+            <div class="form-grid-2">
+              <div class="form-group half"><label for="exp-start">Start Date</label><input type="month" id="exp-start" /></div>
+              <div class="form-group half"><label for="exp-end">End Date</label><input type="month" id="exp-end" /></div>
+            </div>
+            <div class="form-group"><label for="exp-desc">Description</label><textarea id="exp-desc" rows="4" placeholder="Describe your responsibilities..."></textarea></div>
+          </div>
+      
+          <!-- SECTION 5: Skills & Interests -->
+          <div class="form-section">
+            <h2>Skills & Interests</h2>
+            <div class="form-group"><label for="skills-input">Skills</label><input type="text" id="skills-input" placeholder="e.g., JavaScript, React, CSS" /></div>
+            <div class="form-group"><label for="interests-input">Interests</label><input type="text" id="interests-input" placeholder="e.g., Hiking, Chess, Photography" /></div>
+          </div>
+      
+          <!-- SECTION 6: Projects -->
+          <div class="form-section">
+            <h2>Projects</h2>
+            <div class="form-group"><label for="proj-title">Project Title</label><input type="text" id="proj-title" placeholder="Portfolio Website" /></div>
+            <div class="form-group"><label for="proj-desc">Description</label><textarea id="proj-desc" placeholder="Built a personal portfolio with HTML/CSS/JS" rows="4"></textarea></div>
+          </div>
+      
+        </div>
+      
+        <div class="nav-buttons">
+          <button type="button" id="prev-btn">Previous Section</button>
+          <button type="button" id="next-btn">Next Section</button>
+        </div>
+
+        <!-- FINAL: Download Resume -->
+      <div class="form-section">
+        <h2>All Done!</h2>
+        <p style="margin-bottom: 1rem;">You can now download your resume.</p>
+        <button type="button" id="download-btn" class="cta-button">Download PDF</button>
+      </div>
+      
+      </form>
+      
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
