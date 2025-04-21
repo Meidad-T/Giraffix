@@ -32,4 +32,38 @@ window.addEventListener('DOMContentLoaded', () => {
       }, 3000);
     });
   });
+
+  const giraffeInput = document.getElementById('import-giraffe');
+
+if (giraffeInput) {
+  giraffeInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const json = JSON.parse(event.target.result);
+        if (!json.templateName || !json.userData) {
+          alert("Invalid .giraffe file. Missing required fields.");
+          return;
+        }
+
+        // Save data to sessionStorage
+        sessionStorage.setItem("giraffe-import-data", JSON.stringify(json.userData));
+
+        // Redirect based on the templateName
+        const templateName = json.templateName.toLowerCase();
+        const url = `templates/${templateName}/index.html`;
+
+        // Go to the resume editor for that template
+        window.location.href = url;
+      } catch (err) {
+        alert("Failed to read .giraffe file.");
+        console.error(err);
+      }
+    };
+    reader.readAsText(file);
+  });
+}
   

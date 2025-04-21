@@ -6,7 +6,7 @@
     <title>Resume Templates - Giraffe</title>
     <link rel="stylesheet" href="templates.css">
 </head>
-<script src="templates.js"></script>
+
 <body>
     <!-- Reuse Navbar -->
     <nav class="navbar">
@@ -26,6 +26,14 @@
     <!-- Template Gallery -->
     <section class="template-gallery">
         <h1 class="section-title">Choose a Resume Template</h1>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <label class="cta-button" style="cursor:pointer;">
+              Import .giraffe File
+              <input type="file" id="import-giraffe" accept=".giraffe,application/json" style="display: none;" />
+            </label>
+          </div>
+
         <div class="template-grid">
             <div class="template-card">
                 <div class="carousel-wrapper">
@@ -59,5 +67,6 @@
             </div>
         </div>
     </section>
+    <script src="templates.js"></script>
 </body>
 </html>
