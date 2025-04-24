@@ -139,6 +139,11 @@ body {
   margin: -0.75rem 0 1rem;
 }
 
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+  }
 
 /* .container {
     position: absolute;
