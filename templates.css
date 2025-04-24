@@ -139,7 +139,33 @@ body {
   margin: -0.75rem 0 1rem;
 }
 
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+  }
 
+  .info-circle {
+    display: inline-block;
+    margin-left: 8px;
+    background-color: #e5e7eb;
+    color: #333;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 20px;
+    font-size: 14px;
+    text-decoration: none;
+    vertical-align: middle;
+    transition: background-color 0.2s;
+  }
+  
+  .info-circle:hover {
+    background-color: #d1d5db;
+    cursor: pointer;
+  }
 /* .container {
     position: absolute;
     inset: 0;
