@@ -41,39 +41,65 @@ body {
   box-shadow: 0 0 15px rgba(0,0,0,0.15);
 }
 
-.resume h1 {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin: 0;
-  color: #111827;
+/* NEW RESUME TEMPLATE STYLE */
+.resume {
+  font-family: 'Poppins', sans-serif;
 }
 
-.resume p {
-  color: #4b5563;
-  margin-bottom: 1rem;
-}
-
-.resume section {
+.resume-header {
+  text-align: center;
   margin-bottom: 2rem;
 }
 
-.resume .section-title {
-  font-size: 1.25rem;
-  font-weight: 600;
+.resume-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
   color: #1f2937;
-  border-bottom: 2px solid #e5e7eb;
-  margin-bottom: 1rem;
 }
 
-.resume .education-entry,
-.resume .experience-entry,
-.resume .project-entry {
-  margin-bottom: 1.2rem;
-}
-
-.resume .education-entry p small {
+.resume-header p {
+  font-size: 1rem;
   color: #6b7280;
-  font-size: 0.85rem;
+}
+
+.resume-section {
+  border-left: 4px solid #ff7301;
+  background-color: #fff6ef;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  margin-top: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.resume .section-title {
+  background-color: #ff7301;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  width: fit-content;
+}
+
+.resume .section-title:focus {
+  background-color: #e55d00;
+  outline: none;
+}
+
+.resume .education-entry p,
+.resume .experience-entry p,
+.resume .project-entry p {
+  line-height: 1.6;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.resume ul {
+  padding-left: 1.5rem;
+  list-style-type: disc;
+  color: #4b5563;
 }
 
 /* FORM SIDE */
@@ -141,11 +167,6 @@ body {
   border-bottom: 1px solid #d1d5db;
   margin-bottom: 0.75rem;
   background-color: transparent;
-}
-
-.resume input.section-title:focus {
-  outline: none;
-  border-color: #ff7301;
 }
 
 /* CTA BUTTON */
@@ -309,3 +330,58 @@ body {
   width: 100%;
   max-width: 100%;
 }
+
+
+
+.color-picker {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.color-picker input {
+  display: none;
+}
+
+.color-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: inline-block;
+  cursor: pointer;
+}
+
+input:checked + .color-circle {
+  border: 3px solid #000000;
+}
+
+.color-circle.orange { background-color: #ff7301; }
+.color-circle.yellow { background-color: #facc15; }
+.color-circle.cyan { background-color: #06b6d4; }
+.color-circle.blue { background-color: #3b82f6; }
+.color-circle.purple { background-color: #8b5cf6; }
+.color-circle.red { background-color: #ef4444; }
+.color-circle.green { background-color: #10b981; }
+.color-circle.lightgrey { background-color: #9ca3af; }
+.color-circle.black { background-color: #000000; }
+
+.resume.orange .resume-section { border-left-color: #ff7301; background-color: #fff6ef; }
+.resume.yellow .resume-section { border-left-color: #facc15; background-color: #fffce5; }
+.resume.cyan .resume-section { border-left-color: #06b6d4; background-color: #e0f7fb; }
+.resume.blue .resume-section { border-left-color: #3b82f6; background-color: #e5f0ff; }
+.resume.purple .resume-section { border-left-color: #8b5cf6; background-color: #f2ebfd; }
+.resume.red .resume-section { border-left-color: #ef4444; background-color: #feecec; }
+.resume.green .resume-section { border-left-color: #10b981; background-color: #e6f9f3; }
+.resume.lightgrey .resume-section { border-left-color: #9ca3af; background-color: #f4f4f5; }
+.resume.black .resume-section { border-left-color: #000000; background-color: #f3f3f3; }
+
+.resume.orange .section-title { background-color: #ff7301; }
+.resume.yellow .section-title { background-color: #facc15; }
+.resume.cyan .section-title { background-color: #06b6d4; }
+.resume.blue .section-title { background-color: #3b82f6; }
+.resume.purple .section-title { background-color: #8b5cf6; }
+.resume.red .section-title { background-color: #ef4444; }
+.resume.green .section-title { background-color: #10b981; }
+.resume.lightgrey .section-title { background-color: #9ca3af; }
+.resume.black .section-title { background-color: #000000; }
