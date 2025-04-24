@@ -1,7 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ✅ Load imported giraffe data (if exists)
   const importedData = sessionStorage.getItem("giraffe-import-data");
   const eduBullets = [];
+
+  const resume = document.querySelector('.resume');
+  const themeInputs = document.querySelectorAll('input[name="theme-color"]');
+  const setTheme = (theme) => {
+    resume.className = `resume ${theme}`;
+  };
 
   if (importedData) {
     const data = JSON.parse(importedData);
@@ -10,14 +15,20 @@ document.addEventListener("DOMContentLoaded", () => {
       if (el) el.value = val || '';
     };
 
-    // Basic Info
+    if (data.sectionTitles) {
+      const titleInputs = document.querySelectorAll('.section-title');
+      data.sectionTitles.forEach((title, i) => {
+        if (titleInputs[i]) titleInputs[i].value = title;
+      });
+    }
+    
+
     setValue('input-name', data.name);
     setValue('input-phone', data.phone);
     setValue('input-email', data.email);
     setValue('input-address', data.address);
     setValue('input-summary', data.summary);
 
-    // Education
     if (data.education?.[0]) {
       setValue('edu-school', data.education[0].school);
       setValue('edu-degree', data.education[0].degree);
@@ -29,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Experience
     if (data.experience?.[0]) {
       setValue('exp-title', data.experience[0].title);
       setValue('exp-company', data.experience[0].company);
@@ -38,18 +48,34 @@ document.addEventListener("DOMContentLoaded", () => {
       setValue('exp-desc', data.experience[0].description);
     }
 
-    // Skills & Interests
     setValue('skills-input', (data.skills || []).join(', '));
     setValue('interests-input', (data.interests || []).join(', '));
 
-    // Projects
     if (data.projects?.[0]) {
       setValue('proj-title', data.projects[0].title);
       setValue('proj-desc', data.projects[0].description);
     }
 
+    if (data.themeColor) {
+      const themeInput = document.querySelector(`input[name="theme-color"][value="${data.themeColor}"]`);
+      if (themeInput) {
+        themeInput.checked = true;
+        setTheme(data.themeColor);
+      }
+    } else {
+      setTheme('orange');
+    }
+
     sessionStorage.removeItem("giraffe-import-data");
+  } else {
+    setTheme('orange');
   }
+
+  themeInputs.forEach(input => {
+    input.addEventListener('change', () => {
+      if (input.checked) setTheme(input.value);
+    });
+  });
 
   const bind = (inputId, targetId, fallback = '') => {
     const input = document.getElementById(inputId);
@@ -201,12 +227,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById('resume-form').addEventListener('submit', e => e.preventDefault());
 
-  updateContact();
-  renderEduBullets();
-  renderEducation();
-  renderExperience();
-  renderProject();
-
   const wrapper = document.querySelector('.form-sections-wrapper');
   const sections = document.querySelectorAll('.form-section');
   const nextBtn = document.getElementById('next-btn');
@@ -231,10 +251,14 @@ document.addEventListener("DOMContentLoaded", () => {
     updateSectionView();
   });
 
+  updateContact();
+  renderEduBullets();
+  renderEducation();
+  renderExperience();
+  renderProject();
   updateSectionView();
 });
 
-// ✅ Download PDF Logic
 const downloadBtn = document.getElementById('download-btn');
 if (downloadBtn) {
   downloadBtn.addEventListener('click', () => {
@@ -303,7 +327,9 @@ if (giraffeBtn) {
             title: getValue('proj-title'),
             description: getValue('proj-desc')
           }
-        ]
+        ],
+        themeColor: document.querySelector('input[name="theme-color"]:checked')?.value || "orange",
+        sectionTitles: [...document.querySelectorAll('.section-title')].map(input => input.value.trim())
       }
     };
 
