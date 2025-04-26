@@ -164,6 +164,11 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `).join('');
   };
+  
+  ['edu-school', 'edu-degree', 'edu-gpa', 'edu-start', 'edu-end'].forEach(id => {
+    const input = document.getElementById(id);
+    if (input) input.addEventListener('input', renderEducation);
+  });
 
   bulletContainer.addEventListener('input', e => {
     if (e.target.classList.contains('edu-bullet-input')) {
@@ -299,3 +304,5 @@ document.addEventListener("DOMContentLoaded", () => {
   renderProject();
   updateSectionView();
 });
+
+
