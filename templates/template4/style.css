@@ -361,7 +361,7 @@ input:checked + .color-circle {
 .color-circle.cyan { background-color: #06b6d4; }
 .color-circle.blue { background-color: #3b82f6; }
 .color-circle.purple { background-color: #8b5cf6; }
-.color-circle.red { background-color: #ef4444; }
+.color-circle.red { background-color: #ed66d2; }
 .color-circle.green { background-color: #10b981; }
 .color-circle.lightgrey { background-color: #9ca3af; }
 .color-circle.black { background-color: #000000; }
@@ -371,7 +371,7 @@ input:checked + .color-circle {
 .resume.cyan .resume-section { border-left-color: #06b6d4; background-color: #e0f7fb; }
 .resume.blue .resume-section { border-left-color: #3b82f6; background-color: #e5f0ff; }
 .resume.purple .resume-section { border-left-color: #8b5cf6; background-color: #f2ebfd; }
-.resume.red .resume-section { border-left-color: #ef4444; background-color: #feecec; }
+.resume.red .resume-section { border-left-color: #ed66d2; background-color: #feecec; }
 .resume.green .resume-section { border-left-color: #10b981; background-color: #e6f9f3; }
 .resume.lightgrey .resume-section { border-left-color: #9ca3af; background-color: #f4f4f5; }
 .resume.black .resume-section { border-left-color: #000000; background-color: #f3f3f3; }
@@ -381,7 +381,7 @@ input:checked + .color-circle {
 .resume.cyan .section-title { background-color: #06b6d4; }
 .resume.blue .section-title { background-color: #3b82f6; }
 .resume.purple .section-title { background-color: #8b5cf6; }
-.resume.red .section-title { background-color: #ef4444; }
+.resume.red .section-title { background-color: #ed66d2; }
 .resume.green .section-title { background-color: #10b981; }
 .resume.lightgrey .section-title { background-color: #9ca3af; }
 .resume.black .section-title { background-color: #000000; }
