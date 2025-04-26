@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `).join('');
   };
-  
+
   ['edu-school', 'edu-degree', 'edu-gpa', 'edu-start', 'edu-end'].forEach(id => {
     const input = document.getElementById(id);
     if (input) input.addEventListener('input', renderEducation);
@@ -306,3 +306,82 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// ADDITION: Download PDF
+const downloadBtn = document.getElementById('download-btn');
+if (downloadBtn) {
+  downloadBtn.addEventListener('click', () => {
+    const element = document.querySelector('.resume');
+    const opt = {
+      margin: [70, 40, 70, 40],
+      filename: 'resume.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, logging: false, useCORS: true, scrollY: 0 },
+      jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' },
+      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    };
+    html2pdf().set(opt).from(element).save();
+  });
+}
+
+// ADDITION: Export to .giraffe
+const giraffeBtn = document.getElementById('download-giraffe-btn');
+if (giraffeBtn) {
+  giraffeBtn.addEventListener('click', () => {
+    const getValue = id => document.getElementById(id)?.value?.trim() || "";
+
+    const hiddenSections = Array.from(document.querySelectorAll('section')).map(section => ({
+      id: section.querySelector('[id]')?.id || '',
+      visible: section.style.display !== 'none'
+    }));
+
+    const data = {
+      fileVersion: "1.0",
+      templateName: "template4",
+      userData: {
+        name: getValue('input-name'),
+        phone: getValue('input-phone'),
+        email: getValue('input-email'),
+        address: getValue('input-address'),
+        summary: getValue('input-summary'),
+        education: [
+          {
+            school: getValue('edu-school'),
+            degree: getValue('edu-degree'),
+            gpa: getValue('edu-gpa'),
+            startDate: getValue('edu-start'),
+            endDate: getValue('edu-end'),
+            bullets: [...document.querySelectorAll('.edu-bullet-input')].map(b => b.value.trim()).filter(Boolean)
+          }
+        ],
+        experience: [
+          {
+            title: getValue('exp-title'),
+            company: getValue('exp-company'),
+            startDate: getValue('exp-start'),
+            endDate: getValue('exp-end'),
+            description: getValue('exp-desc')
+          }
+        ],
+        skills: getValue('skills-input').split(',').map(s => s.trim()).filter(Boolean),
+        interests: getValue('interests-input').split(',').map(i => i.trim()).filter(Boolean),
+        projects: [
+          {
+            title: getValue('proj-title'),
+            description: getValue('proj-desc')
+          }
+        ],
+        themeColor: document.querySelector('input[name="theme-color"]:checked')?.value || "orange",
+        sectionTitles: [...document.querySelectorAll('.section-title')].map(input => input.value.trim()),
+        sectionsState: hiddenSections
+      }
+    };
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Resume.giraffe';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+}

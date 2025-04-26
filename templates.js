@@ -50,7 +50,8 @@ if (giraffeInput) {
         }
 
         // Save data to sessionStorage
-        sessionStorage.setItem("giraffe-import-data", JSON.stringify(json.userData));
+        sessionStorage.setItem("giraffe-import-data", JSON.stringify(json));
+
 
         // Redirect based on the templateName
         const templateName = json.templateName.toLowerCase();
