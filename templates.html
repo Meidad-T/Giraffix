@@ -23,73 +23,76 @@
     </div>
   </nav>
 
-   <div class="container">
+  <div class="container">
+    <!-- Template Gallery -->
+    <section class="template-gallery">
+      <h1 class="section-title">Choose a Resume Template</h1>
+      <p class="section-subtitle">
+        Or import your <code>.giraffe</code> file to update your existing resume!
+        <a href="../../faq.html#what-is-giraffe" class="info-circle" title="What is a .giraffe file?">?</a>
+      </p>
 
-  <!-- Template Gallery -->
-  <section class="template-gallery">
-    <h1 class="section-title">Choose a Resume Template</h1>
-    <p class="section-subtitle">
-      Or import your <code>.giraffe</code> file to update your existing resume!
-      <a href="../../faq.html#what-is-giraffe" class="info-circle" title="What is a .giraffe file?">?</a>
-    </p>
-  
-    
+      <!-- Import Button -->
+      <div class="import-wrapper" style="text-align: center; margin: 2rem 0 3rem 0;">
+        <label class="cta-button" style="cursor: pointer; display: inline-block;">
+          Import .giraffe File
+          <input type="file" id="import-giraffe" accept=".giraffe,application/json" style="display: none;" />
+        </label>
+      </div>
 
-    <!-- Import Button -->
-    <div class="import-wrapper" style="text-align: center; margin: 2rem 0 3rem 0;">
-      <label class="cta-button" style="cursor: pointer; display: inline-block;">
-        Import .giraffe File
-        <input type="file" id="import-giraffe" accept=".giraffe,application/json" style="display: none;" />
-      </label>
-    </div>
-
-    <!-- Template Grid -->
-    <div class="template-grid">
-      <div class="template-card">
-        <div class="carousel-wrapper">
-          <div class="carousel-preview" data-folder="templates/template1" data-total="1">
-            <img class="carousel-img active" src="templates/template1/preview.png" alt="Template 1 Preview" />
+      <!-- Template Grid -->
+      <div class="template-grid">
+        <div class="template-card">
+          <div class="carousel-wrapper">
+            <div class="carousel-preview" data-folder="templates/template1" data-total="1">
+              <img class="carousel-img active" src="templates/template1/preview.png" alt="Template 1 Preview" />
+            </div>
           </div>
+          <h3>Simple & Clean</h3>
+          <a href="templates/template1/index.html" class="cta-button">Use This Template</a>
         </div>
-        <h3>Simple & Clean</h3>
-        <a href="templates/template1/index.html" class="cta-button">Use This Template</a>
-      </div>
 
-      <!-- Template 4: -->
-      <div class="template-card">
-        <div class="carousel-wrapper">
-          <div class="carousel-preview" data-folder="templates/template1" data-total="1">
-            <img class="carousel-img active" src="templates/template4/preview.png" alt="Template 4 Preview" />
+        <!-- Template 4 -->
+        <div class="template-card">
+          <div class="carousel-wrapper">
+            <div class="carousel-preview" data-folder="templates/template4" data-total="1">
+              <img class="carousel-img active" src="templates/template4/preview.png" alt="Template 4 Preview" />
+            </div>
           </div>
+          <h3>Sectionable</h3>
+          <a href="templates/template4/index.html" class="cta-button">Use This Template</a>
         </div>
-        <h3>Sectionable</h3>
-        <a href="templates/template4/index.html" class="cta-button">Use This Template</a>
-      </div>
 
-
-
-      <div class="template-card">
-        <div class="carousel-wrapper">
-          <div class="carousel-preview" data-folder="templates/template2" data-total="4">
-            <img class="carousel-img active" src="templates/template2/preview_1.png" alt="Template Preview 1" />
-            <img class="carousel-img" src="templates/template2/preview_2.png" alt="Template Preview 2" />
+        <!-- Template 5 -->
+        <div class="template-card">
+          <div class="carousel-wrapper">
+            <div class="carousel-preview" data-folder="templates/template5" data-total="1">
+              <img class="carousel-img active" src="templates/template5/preview.png" alt="Template 5 Preview" />
+            </div>
           </div>
+          <h3>Sectionable v2</h3>
+          <a href="templates/template5/index.html" class="cta-button">Use This Template</a>
         </div>
-        <h3>Colorful Dream</h3>
-        <a href="templates/template2/index.html" class="cta-button">Use This Template</a>
-      </div>
 
-      <div class="template-card">
-        <img src="templates/template3/preview.png" alt="Template 3 Preview" />
-        <h3>Simple and Clean</h3>
-        <a href="templates/template3/index.html" class="cta-button">Use This Template</a>
-      </div>
-    </div>
+        <div class="template-card">
+          <div class="carousel-wrapper">
+            <div class="carousel-preview" data-folder="templates/template2" data-total="4">
+              <img class="carousel-img active" src="templates/template2/preview_1.png" alt="Template Preview 1" />
+              <img class="carousel-img" src="templates/template2/preview_2.png" alt="Template Preview 2" />
+            </div>
+          </div>
+          <h3>Colorful Dream</h3>
+          <a href="templates/template2/index.html" class="cta-button">Use This Template</a>
+        </div>
 
-   
-      
-    
-  </section>
+        <div class="template-card">
+          <img src="templates/template3/preview.png" alt="Template 3 Preview" />
+          <h3>Simple and Clean</h3>
+          <a href="templates/template3/index.html" class="cta-button">Use This Template</a>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <script src="templates.js"></script>
 </body>
