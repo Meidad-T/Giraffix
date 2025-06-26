@@ -356,25 +356,25 @@ input:checked + .color-circle {
   border: 3px solid #000000;
 }
 
-.color-circle.orange { background-color: #ff7301; }
-.color-circle.yellow { background-color: #facc15; }
-.color-circle.cyan { background-color: #06b6d4; }
-.color-circle.blue { background-color: #3b82f6; }
-.color-circle.purple { background-color: #8b5cf6; }
-.color-circle.red { background-color: #ed66d2; }
-.color-circle.green { background-color: #10b981; }
-.color-circle.lightgrey { background-color: #9ca3af; }
-.color-circle.black { background-color: #f43763; }
+.color-circle.orange { background-color: #ffd901; }
+.color-circle.yellow { background-color: #fa4715; }
+.color-circle.cyan { background-color: #3dd406; }
+.color-circle.blue { background-color: #5bee82; }
+.color-circle.purple { background-color: #a45cf6; }
+.color-circle.red { background-color: #f846d5; }
+.color-circle.green { background-color: #2fbde8; }
+.color-circle.lightgrey { background-color: #1d30ff; }
+.color-circle.black { background-color: #f4378f; }
 
-.resume.orange .resume-section { border-left-color: #ff7301; background-color: #fff6ef; }
-.resume.yellow .resume-section { border-left-color: #facc15; background-color: #fffce5; }
-.resume.cyan .resume-section { border-left-color: #06b6d4; background-color: #e0f7fb; }
-.resume.blue .resume-section { border-left-color: #3b82f6; background-color: #e5f0ff; }
-.resume.purple .resume-section { border-left-color: #8b5cf6; background-color: #f2ebfd; }
-.resume.red .resume-section { border-left-color: #ed66d2; background-color: #feecec; }
-.resume.green .resume-section { border-left-color: #10b981; background-color: #e6f9f3; }
-.resume.lightgrey .resume-section { border-left-color: #9ca3af; background-color: #f4f4f5; }
-.resume.black .resume-section { border-left-color: #f43763; background-color: #f3f3f3; }
+.resume.orange .resume-section { border-left-color: #ffd901; background-color: #fff6ef; }
+.resume.yellow .resume-section { border-left-color: #fa4715; background-color: #fffce5; }
+.resume.cyan .resume-section { border-left-color: #3dd406; background-color: #e0f7fb; }
+.resume.blue .resume-section { border-left-color: #5bee82; background-color: #e5f0ff; }
+.resume.purple .resume-section { border-left-color: #a45cf6; background-color: #f2ebfd; }
+.resume.red .resume-section { border-left-color: #f846d5; background-color: #feecec; }
+.resume.green .resume-section { border-left-color: #2fbde8; background-color: #e6f9f3; }
+.resume.lightgrey .resume-section { border-left-color: #1d30ff; background-color: #f4f4f5; }
+.resume.black .resume-section { border-left-color: #f4378f; background-color: #f3f3f3; }
 
 .resume.orange .section-title { background-color: #ff7301; }
 .resume.yellow .section-title { background-color: #facc15; }
